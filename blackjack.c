@@ -1,34 +1,26 @@
 #include<stdio.h>
 #include<string.h>
+#include<time.h>
+#include<stdlib.h>
 
-typedef struct{
-    int valor; // valor de carta(1-11)
-    const char*nombre; //nombre de carta("A","2"..."Q","K")
-}carta;
+#define MAX_CARTAS 52 // maximo de cartas en un mazo americano
+#define CARTAS_JUGADOR 10
 
-typedef struct{
-    carta Cartas[10];// cartas max del jugador
-    int numeroCartas; // numero de cartas actuales
-}jugador;
-
-void imprimirSaludo(char nombre[]);
-
+// prot. de funciones //
+void imprimir_saludo(char nombre[]);
 void choose_opt(int *opt);
-
-void mezclar(){};
-
-int tomarCarta(int *valorCarta);
-
-int calcularPuntos(int mano[],int contadorCarta);
-
-void imprimirReglas();
-
-void jugarBlackJack();
+void imprimir_reglas();
+void barajar(int cartas[]);
+void jugar_blackjack(int cartas[]);
+int convertir_valor_carta(int carta);
+int mostrar_carta(int carta);
+void mostrar_mano(int mano[],int cantidad);
 
 
-
-int main(){
+int main(){ 
     int opt=0;
+    char name[100];
+
     FILE *archivo;
     char c;
     archivo=fopen("archivo.txt","r");
@@ -41,29 +33,28 @@ int main(){
     }
 
     printf("\n");
-
     printf("\n");
-
-    char name[100];
 
     printf("\n ingrese su nombre:");
 
     fgets(name,sizeof(name),stdin);
-    imprimirSaludo(name);
+    imprimir_saludo(name);
 
     choose_opt(&opt);
 
 return 0;
 }
 
-void imprimirSaludo(char nombre[]){   
+// saludo del jugador // 
+void imprimir_saludo(char nombre[]){   
     size_t len=strlen(nombre);
-    if(len>0 && nombre[len-1]=='\n'){        //funcion de imprimir saludo
+    if(len>0 && nombre[len-1]=='\n'){    
         nombre[len-1]='\0';
     }
     printf("\n HOLA %s! Bienvenido a BLACKJACK \n",nombre);
 }
 
+// menu principal //
 void choose_opt(int *opt){  // funcion de elegir opcion
     do {
         printf("\n\n1) Jugar\n");
@@ -78,7 +69,7 @@ void choose_opt(int *opt){  // funcion de elegir opcion
                 break;
             case 2:
                 printf("\nOPCION 2 ELEGIDA: VER REGLAS\n");
-                imprimirReglas();
+                imprimir_reglas();
                 break;
             case 3:
                 printf("\nSaliendo del juego.");
@@ -89,7 +80,9 @@ void choose_opt(int *opt){  // funcion de elegir opcion
         }
     } while (*opt != 3);
 }
-void imprimirReglas(){
+
+// imprimir reglas //
+void imprimir_reglas(){
     printf("\n\t-----------------------------------------------------------------------------------------------------\n");
     printf("\n1) Objetivo: Acercarse lo mas posible a 21 puntos sin pasarse.\n ");
     printf("\n2) Valor de las cartas: Las cartas numericas valen su numero.\n");
@@ -104,3 +97,46 @@ void imprimirReglas(){
     printf("\n6) Ganar: Gana quien tenga 21 puntos o este mas cerca sin pasarse. Si se empatan los puntos, es un 'push'(empate)\n");
     printf("\n\t-----------------------------------------------------------------------------------------------------");
 }
+
+void barajar(int cartas[]){
+    int mazo[MAX_CARTAS];
+
+    for(int i = 0 ; i<MAX_CARTAS ; i++){
+        mazo[i]=(i / 13 + 3) * 100 + i % 13 + 1; // representar cartas con codigo
+    }
+
+
+    srand(time(NULL));
+    for(int i = 0; i<MAX_CARTAS; i++){
+        int t;
+        do{
+            t=rand()% MAX_CARTAS;
+        }while(mazo[t]==0);
+
+        cartas[i]=mazo[t];
+        mazo[t] = 0; // marca la carta como tomada
+    }
+}
+
+void jugar_blackjack(int cartas[]){
+
+
+
+
+
+
+
+}
+
+int convertir_valor_carta(int carta){
+    int valor = carta % 100;
+    if(valor >=11 && valor<=13){ // J, Q, K
+        return 10;
+    }
+    if(valor ==1){ // As
+        return 11; // As es 11 inicialmente
+    }
+    return valor; // numeros del 2 al 10
+}
+
+

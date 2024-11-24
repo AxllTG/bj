@@ -1,7 +1,6 @@
 #include "config.h"
 
 int main(){
-
     int opt = 0;
     Jugador jugadores[MAX_JUGADORES];
     int numJugadores = 0;   
@@ -52,6 +51,7 @@ int main(){
             
         (numJugadores)++;
     }
+    
     choose_opt(&opt, jugadores, &numJugadores);
 
     generar_ranking_combinado(jugadores, numJugadores);

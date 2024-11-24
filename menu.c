@@ -6,11 +6,12 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
         printf("\n\t==========================================================\n");
         printf("\n\tMonto Inicial: %d\t\t\tMonto Final: %d\n", jugadores->monto_inicial, jugadores->monto_apuesta);
         printf("\n\t==========================================================\n");
+        // La opcion 1) 'JUGAR' esta habilitada mientras que el JUGADOR todavia tenga fondos disponibles no menores a USD 50, es decir, si posee USD 51 puede seguir jugando
+        // NOTA: al comienzo del juego el jugador para ver las cartas iniciales, se le descuenta automaticamente USD 50, si decide NO apostar (seguir) pierde los USD 50
         printf("\n\t1) Jugar\n");
         printf("\t2) Lista de jugadores\n");
         printf("\t3) Ver reglas\n");
         printf("\t4) Registros de partidas\n");
-        // printf("\t5) Ver ranking de perdedores\n");
         printf("\t5) Salir del juego\n");
         printf("\n\tOpción: ");
         scanf("%d", opt);
@@ -22,8 +23,6 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
                 if(jugadores->monto_apuesta > 50){
                     if (*numJugadores > 0) {
                     printf("\n\tOpción %d elegida: Jugar\n", *opt);
-                    // Cargar datos de los jugadores antes de comenzar
-                    // cargar_datos_jugadores(jugadores, *numJugadores);
                     int cartas[MAX_CARTAS];
                     barajar(cartas); // Baraja cartas
                     jugar_blackjack(cartas, jugadores, *numJugadores);
@@ -32,9 +31,7 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
                     }
                 } else {
                     printf("\n\tGAME OVER! No tienes dinero suficiente para jugar\n");
-
                 }
-
                 break;
       
             case 2:
@@ -92,4 +89,20 @@ void imprimir_jugadores(Jugador jugadores[], int numJugadores){
 
 void saludo_bienvenida(Jugador jugadores[], int numJugadores){
     printf("\n\tBienvenido/a %s\n", jugadores[0].nombre);
+}
+
+void mostrar_contenido_archivo(const char *nombreArchivo) {
+    FILE *archivo = fopen(nombreArchivo, "r");
+    if (archivo == NULL) {
+        printf("No se pudo abrir el archivo %s para mostrar su contenido.\n", nombreArchivo);
+        return;
+    }
+
+    char linea[256];
+    while (fgets(linea, sizeof(linea), archivo)) {
+        printf("%s", linea); // Imprime cada línea del archivo
+    }
+    printf("\t---------------------------------------------------");
+    printf("\n");
+    fclose(archivo);
 }

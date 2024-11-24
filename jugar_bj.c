@@ -44,7 +44,7 @@ void jugar_blackjack(int cartas[], Jugador jugadores[], int numJugadores) {
         printf("\nDinero inicial de %s: USD %d\n", jugadores[i].nombre, jugadores[i].monto_inicial);
         printf("\nDinero Ganado: USD %d", jugadores[i].contador_ganancias);
         printf("\nDinero Perdido: USD %d\n", jugadores[i].contador_perdidas);
-        printf("\nDinero Final Acumulado: USD %d\n", jugadores[i].monto_apuesta);
+        printf("\nDinero Final Acumulado: USD %d\n", jugadores[i].monto_apuesta - 50); // dinero acumulado menos los USD 50 iniciales para ver las cartas
         printf("----------------------------------------");
         printf("\nCARTAS DE %s:\n", jugadores[i].nombre);
         mostrar_mano(jugadores[i].mano, 2);

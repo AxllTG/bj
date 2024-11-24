@@ -21,7 +21,7 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
             case 1:
                 if(jugadores->monto_apuesta > 50){
                     if (*numJugadores > 0) {
-                    printf("\nOpción %d elegida: Jugar\n", *opt);
+                    printf("\n\tOpción %d elegida: Jugar\n", *opt);
                     // Cargar datos de los jugadores antes de comenzar
                     // cargar_datos_jugadores(jugadores, *numJugadores);
                     int cartas[MAX_CARTAS];
@@ -38,17 +38,17 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
                 break;
       
             case 2:
-                printf("\nOpción %d elegida: LISTA DE JUGADORES \n", *opt);
+                printf("\n\tOpción %d elegida: LISTA DE JUGADORES \n", *opt);
                 imprimir_jugadores(jugadores, *numJugadores);
                 break;
 
             case 3:
-                printf("\nOpción %d elegida: VER REGLAS \n", *opt);
+                printf("\n\tOpción %d elegida: VER REGLAS \n", *opt);
                 imprimir_reglas();
                 break;
 
             case 4:
-                printf("\nOpción %d elegida: Registros partidas: \n", *opt);
+                printf("\n\tOpción %d elegida: Registros partidas: \n", *opt);
                 printf("\n\t------------------ REGISTROS ------------------\n");
                 mostrar_contenido_archivo("registros_partidas.txt");
                 break;
@@ -67,15 +67,15 @@ void choose_opt(int *opt, Jugador jugadores[], int *numJugadores){  // Función 
 // Imprimir reglas
 void imprimir_reglas(){
     printf("\n\t-----------------------------------------------------------------------------------------------------\n");
-    printf("\n1) Objetivo: Acercarse lo más posible a 21 puntos sin pasarse.\n ");
-    printf("\n2) Valor de las cartas: Las cartas numéricas valen su número.\n");
-    printf("\t-> Las figuras (J, Q, K) valen 10 puntos.\n");
-    printf("\t-> El As vale 1 o 11, según lo que más beneficie al jugador.\n");
-    printf("\n3) Reparto: El crupier reparte dos cartas al jugador y dos para sí mismo (una boca arriba y otra boca abajo).\n");
-    printf("\n4) Acciones del jugador: Pedir carta (Hit): Recibir una carta adicional.\n");
-    printf("\t-> Plantarse (Stand): No recibir más cartas.\n");
-    printf("\n5) Crupier: Debe pedir cartas hasta tener al menos 17 puntos. Si supera 21, pierde.\n");
-    printf("\n6) Ganar: Gana quien tenga 21 puntos o esté más cerca sin pasarse. Si se empatan los puntos, es un 'push' (empate).\n");
+    printf("\n\t1) Objetivo: Acercarse lo más posible a 21 puntos sin pasarse.\n ");
+    printf("\n\t2) Valor de las cartas: Las cartas numéricas valen su número.\n");
+    printf("\t\t-> Las figuras (J, Q, K) valen 10 puntos.\n");
+    printf("\t\t-> El As vale 1 o 11, según lo que más beneficie al jugador.\n");
+    printf("\n\t3) Reparto: El crupier reparte dos cartas al jugador y dos para sí mismo (una boca arriba y otra boca abajo).\n");
+    printf("\n\t4) Acciones del jugador: Pedir carta (Hit): Recibir una carta adicional.\n");
+    printf("\t\t-> Plantarse (Stand): No recibir más cartas.\n");
+    printf("\n\t5) Crupier: Debe pedir cartas hasta tener al menos 17 puntos. Si supera 21, pierde.\n");
+    printf("\n\t6) Ganar: Gana quien tenga 21 puntos o esté más cerca sin pasarse. Si se empatan los puntos, es un 'push' (empate).\n");
     printf("\n\t-----------------------------------------------------------------------------------------------------");
 }
 
@@ -85,7 +85,7 @@ void imprimir_jugadores(Jugador jugadores[], int numJugadores){
         printf("No hay jugadores para mostrar.\n");
     } else {
         for (int i = 0; i < numJugadores; i++) {
-            printf("Jugador[%d]: %s\n", i + 1, jugadores[i].nombre);
+            printf("\tJugador[%d]: %s\n", i + 1, jugadores[i].nombre);
         }
     }
 }

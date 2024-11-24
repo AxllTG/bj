@@ -275,7 +275,7 @@ void guardar_registro_partida(Jugador jugadores) {
     }
 
 //    Escribir los resultados de la partida
-    fprintf(archivo, "Jugador: %s, Dinero Acumulado: %d, Dinero Ganado: %d, Dinero Perdido: %d, Partidas Ganadas: %d, Partidas Perdidas: %d\n",
+    fprintf(archivo, "\tJugador: %s, Dinero Acumulado: %d, Dinero Ganado: %d, Dinero Perdido: %d, Partidas Ganadas: %d, Partidas Perdidas: %d\n",
         jugadores.nombre,
         jugadores.monto_apuesta,
         jugadores.dinero_ganado / 2,

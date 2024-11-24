@@ -8,7 +8,8 @@
 
 # Run
 
-### gcc main.c menu.c jugar_bj.c -o main
+### gcc main.c menu.c jugar_bj.c ranking.c ranking_general.c -o main
+
 > Compilar código
 
 ### ./main

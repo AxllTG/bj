@@ -42,10 +42,20 @@ void turno_crupier(Jugador *crupier, int cartas[], int *indiceCarta);
 // void merge_sort(Jugador jugadores[], int left, int right);
 // void merge(Jugador jugadores[], int left, int mid, int right);
 
+// Funciones para el ranking combinado
+void mergeSort(Jugador arr[], int left, int right);
+void merge(Jugador arr[], int left, int middle, int right);
+int compararRanking(const void *a, const void *b);
+void generar_ranking_combinado(Jugador jugadores[], int numJugadores);
+void guardar_ranking_combinado(Jugador jugadores[], int numJugadores);
+void mostrar_ranking_combinado(); 
+int leer_ranking_combinado(Jugador jugadores[], int numJugadores);
+
+
+
 void guardar_registro_partida(Jugador jugadores);
 void mostrar_contenido_archivo(const char *nombreArchivo);
 
-// void mostrar_ranking_combinado(Jugador jugadores[], int numJugadores);
-void guardar_ranking_combinado(Jugador jugadores[], int numJugadores);
+
 
 #endif

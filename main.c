@@ -4,7 +4,7 @@ int main(){
 
     int opt = 0;
     Jugador jugadores[MAX_JUGADORES];
-    int numJugadores = 0;
+    int numJugadores = 0;   
 
     FILE *archivo;
     char c;
@@ -54,8 +54,9 @@ int main(){
     }
     choose_opt(&opt, jugadores, &numJugadores);
 
-    guardar_ranking_combinado(jugadores, numJugadores);
-    mostrar_contenido_archivo("ranking_combinado.txt");
+    generar_ranking_combinado(jugadores, numJugadores);
+
+    mostrar_ranking_combinado();
 
     printf("\nPresione una tecla para salir\n");
     getchar();
